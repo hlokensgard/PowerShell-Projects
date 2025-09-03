@@ -1,0 +1,2 @@
+# Ignore outputs folder in networkintest
+/NetworkingTest/outputs/
