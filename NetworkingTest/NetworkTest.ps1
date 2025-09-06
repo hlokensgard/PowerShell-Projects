@@ -629,6 +629,7 @@ function Set-FirewallIcmpAllowRule {
             $existingRc = $rcg.RuleCollection | Where-Object { $_.Name -eq $nrcName }
             if (-not $existingRc) {
                 Write-Verbose "[FW] Updating RCG '$rcgName' to include '$nrcName'"
+                Write-Verbose "This may take a few moments..."
                 $newRc = New-AzFirewallPolicyFilterRuleCollection -Name $nrcName -Priority 240 -Rule @($rule) -ActionType Allow
                 $all = @($rcg.RuleCollection + $newRc)
                 Set-AzFirewallPolicyRuleCollectionGroup -Name $rcgName -Priority $rcg.Priority -RuleCollection $all -FirewallPolicyName $pi.Name -ResourceGroupName $pi.ResourceGroup | Out-Null
